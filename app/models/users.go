@@ -12,10 +12,11 @@ import (
 
 type User struct {
 	gorm.Model
-	Name     string
-	Username string `gorm:"type:varchar(100);unique_index"`
-	Email    string `gorm:"type:varchar(100);unique_index"`
-	Password string
+	Name          string `gorm:"size:255;not null;unique" json:"name"`
+	Username      string `gorm:"type:varchar(100);unique_index"`
+	Email         string `gorm:"type:varchar(100);unique_index"`
+	Password      string `gorm:"size:255;not null;" json:"password"`
+	Conf_password string
 }
 
 func (user *User) Validate() (map[string]interface{}, bool) {
@@ -25,15 +26,19 @@ func (user *User) Validate() (map[string]interface{}, bool) {
 	}
 
 	if user.Username == "" {
-		return u.Message(false, "Name should be on the payload"), false
+		return u.Message(false, "Userame should be on the payload"), false
 	}
 
 	if user.Email == "" {
 		return u.Message(false, "Email should be on the payload"), false
 	}
 
+	if user.Conf_password != user.Password {
+		return u.Message(false, "Email should be on the payloadsss"), false
+	}
+
 	if !strings.Contains(user.Username, "@") {
-		return u.Message(false, "Email address is required"), false
+		return u.Message(false, "Username is required"), false
 	}
 
 	//All the required parameters are present
@@ -52,7 +57,9 @@ func (user *User) Create() map[string]interface{} {
 		u.Message(false, "There was an internal error")
 		return nil
 	}
+
 	user.Password = string(hash)
+	user.Conf_password = string(hash)
 
 	GetDB().Create(user)
 

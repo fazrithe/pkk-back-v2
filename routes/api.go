@@ -13,7 +13,7 @@ func ApiRoutes(prefix string, r *mux.Router) {
 
 	s.HandleFunc("/login", auth.Login).Methods("POST")
 	s.HandleFunc("/register", controllers.CreateUser).Methods("POST")
-	
+
 	s.HandleFunc("/users", auth.ValidateMiddleware(controllers.GetUsers)).Methods("GET")
 	s.HandleFunc("/users/{id}", auth.ValidateMiddleware(controllers.GetUser)).Methods("GET")
 	s.HandleFunc("/users", auth.ValidateMiddleware(controllers.CreateUser)).Methods("POST")
