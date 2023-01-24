@@ -13,10 +13,10 @@ import (
 type User struct {
 	gorm.Model
 	Name          string `gorm:"size:255;not null;unique" json:"name"`
-	Username      string `gorm:"type:varchar(100);unique_index"`
-	Email         string `gorm:"type:varchar(100);unique_index"`
+	Username      string `gorm:"type:varchar(100);unique_index" json:"username"`
+	Email         string `gorm:"type:varchar(100);unique_index" json:"email"`
 	Password      string `gorm:"size:255;not null;" json:"password"`
-	Conf_password string
+	Conf_password string `gorm:"size:255;not null;" json:"confPassword"`
 }
 
 func (user *User) Validate() (map[string]interface{}, bool) {
@@ -34,7 +34,7 @@ func (user *User) Validate() (map[string]interface{}, bool) {
 	}
 
 	if user.Conf_password != user.Password {
-		return u.Message(false, "Email should be on the payloadsss"), false
+		return u.Message(false, "Email should be on the payload"), false
 	}
 
 	if !strings.Contains(user.Username, "@") {
