@@ -95,3 +95,28 @@ func UpdateInstitution(w http.ResponseWriter, r *http.Request) {
 	u.Respond(w, resp)
 
 }
+
+func DeleteInstitution(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+
+	var institution models.Institution
+	id, err := strconv.Atoi(params["id"])
+	if err != nil {
+		u.Respond(w, u.Message(false, "There was an error in your request"))
+		return
+	}
+
+	err = models.GetInstitutionForUpdateOrDelete(id, &institution)
+	if err != nil {
+		u.Respond(w, u.Message(false, "User not found"))
+		return
+	}
+
+	err = models.DeleteInstitution(&institution)
+	if err != nil {
+		u.Respond(w, u.Message(false, "Could not delete the record"))
+		return
+	}
+	u.Respond(w, u.Message(true, "User has been deleted successfully"))
+	return
+}

@@ -63,6 +63,15 @@ func UpdateInstitution(institution *Institution) (err error) {
 	return
 }
 
+func DeleteInstitution(institution *Institution) (err error) {
+	err = GetDB().Delete(institution).Error
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	return
+}
+
 func GetInstitutionForUpdateOrDelete(id int, institution *Institution) (err error) {
 	if err := db.Where("id = ?", id).First(&institution).Error; err != nil {
 		return err

@@ -28,4 +28,5 @@ func ApiRoutes(prefix string, r *mux.Router) {
 	s.HandleFunc("/institutions/{id}", auth.ValidateMiddleware(controllers.GetInstitution)).Methods("GET")
 	s.HandleFunc("/institutions/{id:[0-9]+}", auth.ValidateMiddleware(controllers.GetInstitution)).Methods("GET")
 	s.HandleFunc("/institutions/{id:[0-9]+}", auth.ValidateMiddleware(controllers.UpdateInstitution)).Methods("PUT")
+	s.HandleFunc("/institutions/{id}", auth.ValidateMiddleware(controllers.DeleteInstitution)).Methods("DELETE")
 }
