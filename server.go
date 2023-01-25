@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"master-golang-auth/routes"
 	"net/http"
 	"os"
+	"pkk-back-v2/routes"
 
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"

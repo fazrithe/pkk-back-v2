@@ -1,4 +1,4 @@
-module master-golang-auth
+module pkk-back-v2
 
 go 1.16
 

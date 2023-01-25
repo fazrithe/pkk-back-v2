@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	u "master-golang-auth/utils"
+	u "pkk-back-v2/utils"
 
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"

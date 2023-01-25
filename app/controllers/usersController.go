@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"master-golang-auth/app/models"
-	u "master-golang-auth/utils"
+	"pkk-back-v2/app/models"
+	u "pkk-back-v2/utils"
 
 	"github.com/gorilla/mux"
 )

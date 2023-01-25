@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"master-golang-auth/app/models"
-	u "master-golang-auth/utils"
+	"pkk-back-v2/app/models"
+	u "pkk-back-v2/utils"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/context"
